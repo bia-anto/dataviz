@@ -1,0 +1,144 @@
+def choose_chart():
+    print("What would you like to show with your chart?")
+    print("1. Distribution")  # uni/bi
+    print("2. Relationship")  # bi/multi
+    print("3. Composition")   # static/dynamic
+    print("4. Comparison")    # 23static-123dynamic
+
+    choice = input("Enter the number of your choice: ")
+
+    if choice == '4':
+        return choose_comparison_chart()
+    elif choice == '2':
+        return choose_relationship_chart()
+    elif choice == '1':
+        return choose_distribution_chart()
+    elif choice == '3':
+        return choose_composition_chart()
+    else:
+        print("Invalid input.")
+        return choose_chart()
+
+################################################################################
+
+def choose_comparison_chart():
+    dynamic = input("Are you comparing data over time? (y/n): ").lower()
+    if dynamic not in ['y', 'n']:
+        print("Invalid input. (y/n)")
+        return choose_comparison_chart()
+    elif dynamic == 'y':
+        periods = input("How many periods are you comparing? (a) One/Few or (b) Many: ").lower()
+        if periods not in ['a', 'b']:
+            print("Invalid input. (a/b)")
+            return choose_comparison_chart()
+        elif periods == 'b':
+            var_per_per = input("How many variables per period are you comparing? (a) 1 or (b) 2+: ").lower()
+            if var_per_per not in ['a', 'b']:
+                print("Invalid input. (a/b)")
+                return choose_comparison_chart()
+            elif var_per_per == 'b':
+                print("Line Chart".upper())
+            else :
+                print("Line Chart / Bar Chart Vertical".upper())
+        else :
+            cyclical = input("Are data cyclical (y/n): ").lower()
+            if cyclical not in ['y', 'n']:
+                print("Invalid input. (y/n)")
+                return choose_comparison_chart()
+            elif cyclical == 'y':
+                print("Circular Area Chart".upper())
+            else :
+                print("Line Chart".upper())
+    else :
+        var_per_item = input("How many variables per item are you comparing? (a) 1 or (b) 2: ").lower()
+        if var_per_item not in ['a', 'b']:
+            print("Invalid input. (a/b)")
+            return choose_comparison_chart()
+        elif var_per_item == 'b':
+            print("Variable Width Column Chart".upper())
+        else :
+            cat_per_var = input("How many categories does the variable contain? (a) Few or (b) Many: ").lower()
+            if cat_per_var not in ['a', 'b']:
+                print("Invalid input. (a/b)")
+                return choose_comparison_chart()
+            elif cat_per_var == 'b':
+                print("Table with Embedded Charts".upper())
+            else :
+                print("Bar Chart (Horizontal or Vertical)".upper())
+
+################################################################################
+
+def choose_relationship_chart():
+    var_no = input("You are examining: \n  a. 2 vars \n  b. 3+ vars").lower()
+    if var_no not in ['a', 'b']:
+        print("Invalid input. (a/b)")
+        return choose_relationship_chart()
+    elif var_no == 'a':
+        print("Scatter Plot".upper())
+    else :
+        print("Scatter Plot Bubble Size".upper())
+
+################################################################################
+
+def choose_distribution_chart():
+    distro_type = input("Distribution is: \n  1. Univariate \n  2. Bivariate").lower()
+    if distro_type not in ['1', '2']:
+        print("Invalid input. (1/2)")
+        return choose_distribution_chart()
+    elif distro_type == '1':
+        daat_points = input("Data points are: \n a. Few \n  b. Many").lower()
+        if data_points not in ['a', 'b']:
+            print("Invalid input. (a/b)")
+            return choose_distribution_chart()
+        if data_points == 'a':
+            print("Bar Histogram".upper())
+        else :
+            print("Line Histogram".upper())
+    else :
+        print("Scatter Plot".upper())
+
+################################################################################
+
+def choose_composition_chart():
+    dynamic = input("Are you considering static (1) or dynamic (2) composition? :").lower()
+    if dynamic not in ['a', 'b']:
+        print("Invalid input. (a/b)")
+        return choose_composition_chart()
+    elif dynamic == 1:
+        problem = input("What's your problem:\n  1. Simple share of total\n  2. Accum./Subtrac. to Total\n  3. Components of Components\n  4. Accumulation to total and Absolute difference matters\n Please enter 1-4: ".lower())
+        if problem not in ['1', '2', '3', '4']:
+            print("Invalid input.")
+            return choose_composition_chart()
+        elif problem == '1':
+            print("pie chart".upper)
+        elif problem == '2':
+            print("waterfall chart".upper)
+        elif problem == '3':
+            print("stacked 100% bar chart with subcomponents".upper)
+        else :
+            print("tree map".upper)
+    else :
+        periods = input("How many periods are you considering? \n  a. Few \n  b. Many").lower()
+        if periods not in ['a', 'b']:
+            print("Invalid input. (a/b)")
+            return choose_composition_chart()
+        elif periods == 'a':
+            abs_diff_matter = input("Do absolute differences matter? (y/n): ").lower()
+            if abs_diff_matter not in ['y', 'n']:
+                print("Invalid input.")
+                return choose_composition_chart()
+            elif abs_diff_matter == 'n':
+                print("stacked 100% bar chart".upper())
+            else :
+                print("stacked bar chart".upper())
+        else :
+            abs_diff_matter = input("Do absolute differences matter? (y/n): ").lower()
+            if abs_diff_matter not in ['y', 'n']:
+                print("Invalid input.")
+                return choose_composition_chart()
+            elif abs_diff_matter == 'n':
+                print("stacked 100% area chart".upper())
+            else :
+                print("stacked area chart".upper())
+
+
